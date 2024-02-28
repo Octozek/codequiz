@@ -1,21 +1,21 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Your Web Page</title>
-    <!-- Linking the external CSS file -->
-    <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="style.css">
+  <title>JavaScript Quiz</title>
 </head>
 <body>
-
-    <h1>Welcome to My Web Page</h1>
-
-    <p>This is a simple example with HTML, CSS, and JavaScript.</p>
-
-    <!-- Your content goes here -->
-
-    <!-- Linking the external JavaScript file -->
-    <script src="script.js"></script>
+  <div id="quiz-container">
+    <h1>JavaScript Quiz</h1>
+    <p id="instructions">Test your JavaScript knowledge! Click "Start Quiz" to begin.</p>
+    <button id="start-btn">Start Quiz</button>
+    <div id="timer-container"></div>
+    <div id="question-container"></div>
+    <div id="result-container"></div>
+    <div id="score-container"></div>
+  </div>
+  <script src="script.js"></script>
 </body>
 </html>
