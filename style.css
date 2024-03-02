@@ -27,6 +27,11 @@ button {
     color: #555;
   }
 
+#timer-container {
+    margin-top: 10px;
+    font-size: 18px;
+    color: #333;
+  }
 
 #question-container {
     margin-top: 20px;
@@ -37,3 +42,6 @@ button {
     color: #ff0000;
   }
 
+#score-container {
+    margin-top: 10px;
+  }
