@@ -9,13 +9,17 @@ document.addEventListener("DOMContentLoaded", function () {
   let timeLeft = 60;
   let currentQuestionIndex = 0;
   let score = 0;
-  let pastScores = loadScores(); // Load past scores from local storage
+  let pastScores = [];
 
   const questions = [
-    { question: "Sample Question 1", options: ["Option 1", "Option 2", "Option 3", "Option 4"], correctAnswer: "Option 1" },
-    { question: "Sample Question 2", options: ["Option A", "Option B", "Option C", "Option D"], correctAnswer: "Option A" },
+    { question: "What heart means love?", options: ["💚", "💙", "💛", "❤️"], correctAnswer: "❤️" },
+    { question: "What heart means friends?", options: ["💛", "💜", "🤎", "🧡"], correctAnswer: "💛" },
+    { question: "Who is not sick?", options: ["🤢", "🤧", "🤮", "🥶"], correctAnswer: "🥶" },
     // Add more sample questions as needed
   ];
+  
+  // Show past scores on page load
+  showPastScores();
 
   function startQuiz() {
     startBtn.style.display = "none";
@@ -37,13 +41,13 @@ document.addEventListener("DOMContentLoaded", function () {
         optionButton.textContent = option;
         optionButton.classList.add("option");
         optionsContainer.appendChild(optionButton);
+
+        optionButton.addEventListener("click", () => {
+          checkAnswer(option);
+        });
       });
 
       questionContainer.appendChild(optionsContainer);
-
-      optionsContainer.addEventListener("click", (event) => {
-        checkAnswer(event.target.textContent);
-      });
     } else {
       endQuiz();
     }
@@ -78,44 +82,89 @@ document.addEventListener("DOMContentLoaded", function () {
     clearInterval(timer);
     questionContainer.innerHTML = "";
     resultContainer.innerHTML = "";
-    
+
     // Display the final score
     scoreContainer.innerHTML = `<h2>Quiz Completed</h2><p>Your Score: ${score} points</p>`;
-    
+
     // Prompt for initials
     const initials = prompt("Enter your initials:");
     if (initials) {
-      saveScore(initials, score);
-      showPastScores(); // Display past scores after saving the current score
+      saveScore(initials, score, 60 - timeLeft);
+      // Show past scores only after saving the score
+      showPastScores();
     }
+
+    // Add "Retake Quiz" button
+    const retakeBtn = document.createElement("button");
+    retakeBtn.textContent = "Retake Quiz";
+    retakeBtn.addEventListener("click", retakeQuiz);
+    scoreContainer.appendChild(retakeBtn);
   }
 
-  function saveScore(initials, score) {
-    // Save the score to local storage
-    pastScores.push({ initials, score });
+  function saveScore(initials, score, time) {
+    pastScores.push({ initials, score, time });
     localStorage.setItem("quizScores", JSON.stringify(pastScores));
   }
 
   function showPastScores() {
     // Retrieve and display past scores
-    const sortedScores = pastScores.sort((a, b) => b.score - a.score); // Sort scores in descending order
-    
+    const storedScores = JSON.parse(localStorage.getItem("quizScores")) || [];
+    pastScores = storedScores;
+
+    console.log("Stored Scores:", pastScores);
+
+    const sortedScores = pastScores.sort((a, b) => b.score - a.score);
+
     const scoresList = document.createElement("ol");
     scoresList.innerHTML = "<h3>Past Scores:</h3>";
-    
-    sortedScores.forEach((entry) => {
+
+    sortedScores.forEach((entry, index) => {
       const scoreItem = document.createElement("li");
-      scoreItem.textContent = `${entry.initials}: ${entry.score} points`;
+      scoreItem.textContent = `${entry.initials}: ${entry.score} points (${entry.time}s)`;
+
+      const clearButton = document.createElement("button");
+      clearButton.textContent = "Clear";
+      clearButton.classList.add("clear-btn");
+      clearButton.addEventListener("click", () => {
+        clearScore(index);
+      });
+
+      scoreItem.appendChild(clearButton);
       scoresList.appendChild(scoreItem);
     });
 
     scoreContainer.appendChild(scoresList);
   }
 
-  function loadScores() {
-    // Load scores from local storage or return an empty array if not found
-    return JSON.parse(localStorage.getItem("quizScores")) || [];
+  function clearScore(index) {
+    const confirmDelete = confirm("Are you sure you want to delete this past score?");
+    if (confirmDelete) {
+      pastScores.splice(index, 1);
+      localStorage.setItem("quizScores", JSON.stringify(pastScores));
+      scoreContainer.innerHTML = "";
+      showPastScores();
+    }
   }
 
-  startBtn.addEventListener("click", startQuiz);
+  function retakeQuiz() {
+    // Reset variables and restart the quiz
+    timeLeft = 60;
+    currentQuestionIndex = 0;
+    score = 0;
+    pastScores = [];
+
+    // Clear the displayed content
+    questionContainer.innerHTML = "";
+    resultContainer.innerHTML = "";
+    scoreContainer.innerHTML = "";
+
+    // Start the quiz again
+    startQuiz();
+  }
+
+  startBtn.addEventListener("click", () => {
+    // Hide past scores before starting the quiz
+    scoreContainer.innerHTML = "";
+    startQuiz();
+  });
 });
