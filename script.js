@@ -17,7 +17,7 @@ document.addEventListener("DOMContentLoaded", function () {
     { question: "Who is not sick?", options: ["🤢", "🤧", "🤮", "🥶"], correctAnswer: "🥶" },
     // Add more sample questions as needed
   ];
-  
+
   // Show past scores on page load
   showPastScores();
 
@@ -68,8 +68,19 @@ document.addEventListener("DOMContentLoaded", function () {
     if (userAnswer === currentQuestion.correctAnswer) {
       score += 10;
       resultContainer.innerHTML = "Correct! +10 points";
+
+      // Hide the message after 2 seconds (adjust the time as needed)
+      setTimeout(() => {
+        resultContainer.innerHTML = "";
+      }, 2000);
     } else {
-      resultContainer.innerHTML = "Incorrect! No points awarded";
+      resultContainer.innerHTML = "Incorrect! No points added";
+
+      // Hide the message after 2 seconds (adjust the time as needed)
+      setTimeout(() => {
+        resultContainer.innerHTML = "";
+      }, 2000);
+
       timeLeft = Math.max(0, timeLeft - 10);
     }
 
@@ -93,12 +104,6 @@ document.addEventListener("DOMContentLoaded", function () {
       // Show past scores only after saving the score
       showPastScores();
     }
-
-    // Add "Retake Quiz" button
-    const retakeBtn = document.createElement("button");
-    retakeBtn.textContent = "Retake Quiz";
-    retakeBtn.addEventListener("click", retakeQuiz);
-    scoreContainer.appendChild(retakeBtn);
   }
 
   function saveScore(initials, score, time) {
@@ -124,7 +129,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
       const clearButton = document.createElement("button");
       clearButton.textContent = "Clear";
-      clearButton.classList.add("clear-btn");
+      clearButton.classList.add("btn", "btn-danger", "clear-btn");
       clearButton.addEventListener("click", () => {
         clearScore(index);
       });
@@ -133,7 +138,16 @@ document.addEventListener("DOMContentLoaded", function () {
       scoresList.appendChild(scoreItem);
     });
 
+    // Add "Retake Quiz" button using Bootstrap classes
+    const retakeBtn = document.createElement("button");
+    retakeBtn.textContent = "Retake Quiz";
+    retakeBtn.classList.add("btn", "btn-primary", "retake-btn", "mt-3");
+    retakeBtn.addEventListener("click", retakeQuiz);
+
+    // Append the scores list and "Retake Quiz" button to the scoreContainer
+    scoreContainer.innerHTML = "";
     scoreContainer.appendChild(scoresList);
+    scoreContainer.appendChild(retakeBtn);
   }
 
   function clearScore(index) {
@@ -141,7 +155,6 @@ document.addEventListener("DOMContentLoaded", function () {
     if (confirmDelete) {
       pastScores.splice(index, 1);
       localStorage.setItem("quizScores", JSON.stringify(pastScores));
-      scoreContainer.innerHTML = "";
       showPastScores();
     }
   }
