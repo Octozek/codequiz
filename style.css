@@ -1,53 +1,102 @@
+/* Global body properties */
 body {
-    background-color: #343a40 !important;
-    color: #ffffff !important;
-    margin: 0;
-    padding: 0;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    height: 100vh;
-  }
-  
-  #quiz-container {
-    text-align: center;
-  }
-  
-  .btn-primary,
-  .btn-primary:hover {
-    background-color: #007bff !important;
-    border-color: #007bff !important;
-    font-size: 18px;
-  }
-  
-  .text-danger {
-    color: #ff0000 !important;
-    font-size: 20px;
-  }
-  
-  #quiz-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    box-sizing: border-box;
-    padding: 40px;
-  }
-  
-  #timer-container {
-    font-size: 28px;
-  }
-  
-  h1 {
-    font-size: 36px;
-  }
-  
-  .option {
-    font-size: 20px;
-    margin: 10px;
-  }
-  
-  .retake-btn {
-    margin-top: 20px;
-  }
+  background-color: #343a40 !important;
+  color: #ffffff !important;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+}
+
+/* Quiz container layout */
+#quiz-container {
+  text-align: center;
+  background-color: #343a40; /* Background for the quiz container */
+  box-sizing: border-box;
+  padding: 80px; /* Increased padding for the quiz container */
+  position: relative; /* Added relative positioning for absolute children */
+}
+
+/* Button appearance */
+.btn-primary,
+.btn-primary:hover {
+  background-color: #007bff !important;
+  border-color: #007bff !important;
+  font-size: 18px;
+}
+
+/* Text color for critical messages */
+.text-danger {
+  color: #ff0000 !important;
+  font-size: 20px;
+}
+
+/* Correct and Incorrect message containers */
+#correct-container,
+#incorrect-container {
+  font-size: 20px;
+  margin-top: 50px; /* Adjusted margin to move them down */
+  position: absolute;
+  top: 10px;
+  right: 10px;
+}
+
+/* Timer display */
+#timer-container {
+  font-size: 28px;
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  margin-top: -25px; /* Adjusted margin to move it up */
+}
+
+/* Heading font size */
+h1 {
+  font-size: 36px;
+}
+
+/* Option button font and spacing */
+.option {
+  font-size: 20px;
+  margin: 10px;
+}
+
+/* Margin for the clear button */
+.clear-btn {
+  margin-left: 10px;
+}
+
+/* Score container layout */
+#score-container {
+  margin-top: 10px;
+  background-color: #343a40; /* Background for the score container */
+  padding: 10px; /* Padding for the score container */
+  margin-left: 0; /* Alignment for the score container */
+}
+
+/* Spacing for each score list item */
+#score-container ol li {
+  margin-bottom: 10px;
+}
+
+/* Spacing for the retake button */
+.retake-btn {
+  margin-top: 20px;
+}
+
+/* Bootstrap container properties */
+.container {
+  width: 800px; /* Fixed width for the container */
+  display: flex;
+  align-items: center; /* Vertical alignment for the container content */
+  justify-content: center;
+  height: 100vh;
+}
+
+/* Bootstrap column layout */
+.col-md-6 {
+  text-align: left;
+  margin-top: 20px; /* Margin adjustment for the column content */
+}

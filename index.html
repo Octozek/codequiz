@@ -5,19 +5,21 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
   <link rel="stylesheet" href="style.css">
-  
-
-
   <title>JavaScript Quiz</title>
 </head>
 <body>
-  <div id="quiz-container" class="rounded text-light">
-    <div id="timer-container" class="mb-2"></div>
-    <h1 class="mb-4">JavaScript Quiz</h1>
-    <button id="start-btn" class="btn btn-primary">Start Quiz</button>
-    <div id="question-container" class="mt-3"></div>
-    <div id="result-container" class="mt-2 text-danger"></div>
-    <div id="score-container" class="mt-2"></div>
+  <div class="container">
+    <div class="rounded text-light" id="quiz-container">
+      <div id="timer-container" class="mb-2"></div>
+      <h1 class="mb-4">JavaScript Quiz</h1>
+      <button id="start-btn" class="btn btn-primary">Start Quiz</button>
+      <div id="question-container" class="mt-3"></div>
+      <div id="result-container" class="mt-2 text-danger"></div>
+      <div id="correct-container" class="mt-2 text-success"></div> <!-- New container for correct message -->
+      <div id="incorrect-container" class="mt-2 text-danger"></div> <!-- New container for incorrect message -->
+      <div id="score-container" class="mt-2"></div>
+      <div id="question-count-container" class="mt-2"></div>
+    </div>
   </div>
   <script src="script.js"></script>
 </body>
