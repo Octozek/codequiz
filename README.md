@@ -61,6 +61,10 @@ Feel free to customize the quiz by adding more questions or adjusting the timer 
 
 Contributions are welcome! If you have ideas for improvements or new features, please open an issue or submit a pull request.
 
+## Link to Website
+
+Explore the live version of the codequize. [https://octozek.github.io/codequiz/]
+
 ## License
 
-N/A
+N/A 
