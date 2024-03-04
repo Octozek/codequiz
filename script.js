@@ -105,9 +105,16 @@ document.addEventListener("DOMContentLoaded", function () {
       // Display incorrect message and penalize time for wrong answer
       incorrectContainer.innerHTML = "Incorrect! No points awarded";
 
-      // Hide incorrect message after 1 second (adjust as needed)
+      // Add a class to #timer-container to turn the timer red
+      timerContainer.classList.add("timer-wrong-answer");
+
+      // Display -10s message
+      displayTimePenalty();
+
+      // Hide incorrect message and remove the class after 1 second (adjust as needed)
       setTimeout(() => {
         incorrectContainer.innerHTML = "";
+        timerContainer.classList.remove("timer-wrong-answer");
       }, 1000);
 
       timeLeft = Math.max(0, timeLeft - 10);
@@ -117,6 +124,21 @@ document.addEventListener("DOMContentLoaded", function () {
     currentQuestionIndex++;
     questionContainer.innerHTML = "";
     showQuestion();
+  }
+
+  // Function to display -10s message
+  function displayTimePenalty() {
+    const penaltyMessage = document.createElement("div");
+    penaltyMessage.textContent = "-10s";
+    penaltyMessage.classList.add("time-penalty");
+  
+    // Append penalty message to the timer container
+    timerContainer.appendChild(penaltyMessage);
+  
+    // Remove the penalty message after a short delay (adjust as needed)
+    setTimeout(() => {
+      penaltyMessage.remove();
+    }, 800);
   }
 
   // Function to end the quiz
