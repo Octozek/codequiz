@@ -49,6 +49,10 @@ The website keeps track of past scores. You can view the past scores on the page
 
 After completing the quiz, you can retake it by clicking the "Retake Quiz" button. This resets the timer, question index, and score.
 
+## Screenshot
+
+![Quiz Website Screenshot](path/to/imgofsight.png)
+
 ## Customization
 
 Feel free to customize the quiz by adding more questions or adjusting the timer duration. Check the JavaScript and CSS files for easy modifications.

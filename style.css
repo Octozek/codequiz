@@ -64,7 +64,7 @@ body {
   transform: translate(-50%, -50%);
   font-size: 14px;
   color: #ff0000;
-  margin-top: -25px; /* Adjusted margin to move it up */
+   margin-top: -25px; /* Adjusted margin to move it up */
 }
 
 /* Heading font size */
