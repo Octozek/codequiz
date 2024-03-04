@@ -51,7 +51,7 @@ After completing the quiz, you can retake it by clicking the "Retake Quiz" butto
 
 ## Screenshot
 
-![Quiz Website Screenshot](path/to/imgofsight.png)
+![Alt Text](./images/screenshot.png)
 
 ## Customization
 
